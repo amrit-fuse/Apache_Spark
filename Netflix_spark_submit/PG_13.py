@@ -22,10 +22,11 @@ PG_13.show(20)
 print('count of PG-13 rating', PG_13.count())
 
 ############ CSV ############
-PG_13.coalesce(1).write.csv('Output/PG_13', header=True, mode='overwrite')
+PG_13.coalesce(1).write.csv('Output/Netflix/PG_13',
+                            header=True, mode='overwrite')
 
 # ############ Postgres ############
-PG_13.write.format('jdbc').options(url='jdbc:postgresql://127.0.0.1/postgres', driver='org.postgresql.Driver',
+PG_13.write.format('jdbc').options(url='jdbc:postgresql://127.0.0.1/Netflix_titles', driver='org.postgresql.Driver',
                                    dbtable='PG_13', user='amrit', password='1234').mode('overwrite').save()
 # mode(overwrite) drop old table from database and creates a new table 'directors_count_no_empty'
 # save() is action and it will execute the query

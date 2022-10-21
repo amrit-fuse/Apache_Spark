@@ -38,8 +38,8 @@ country_genre_combined.show(20)
 
 ############ CSV ############
 country_genre_combined.coalesce(1).write.csv(
-    'Output/Country_genre_combined', header=True, mode='overwrite')
+    'Output/Netflix/Country_genre_combined', header=True, mode='overwrite')
 
 # # ############ Postgres ############
-country_genre_combined.write.format('jdbc').options(url='jdbc:postgresql://127.0.0.1/postgres', driver='org.postgresql.Driver',
+country_genre_combined.write.format('jdbc').options(url='jdbc:postgresql://127.0.0.1/Netflix_titles', driver='org.postgresql.Driver',
                                                     dbtable='Country_genre_combined', user='amrit', password='1234').mode('overwrite').save()

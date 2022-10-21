@@ -23,8 +23,8 @@ print('count:  Movies released in 2008:  ', movies_2008.count())
 
 ############ CSV ############
 movies_2008.coalesce(1).write.csv(
-    'Output/Movies_2008', header=True, mode='overwrite')
+    'Output/Netflix/Movies_2008', header=True, mode='overwrite')
 
 # # ############ Postgres ############
-movies_2008.write.format('jdbc').options(url='jdbc:postgresql://127.0.0.1/postgres', driver='org.postgresql.Driver',
+movies_2008.write.format('jdbc').options(url='jdbc:postgresql://127.0.0.1/Netflix_titles', driver='org.postgresql.Driver',
                                          dbtable='Movies_2008', user='amrit', password='1234').mode('overwrite').save()

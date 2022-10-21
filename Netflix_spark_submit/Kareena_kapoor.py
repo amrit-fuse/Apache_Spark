@@ -30,8 +30,8 @@ print(' Count :: Movies played by Kareena Kapoor are: ', Kareena_kapoor.count())
 
 ####### CSV file  ############
 Kareena_kapoor.coalesce(1).write.csv(
-    'Output/Kareena_kapoor', header=True, mode='overwrite')
+    'Output/Netflix/Kareena_kapoor', header=True, mode='overwrite')
 
 ############ Postgres ############
-Kareena_kapoor.write.format('jdbc').options(url='jdbc:postgresql://127.0.0.1/postgres', driver='org.postgresql.Driver',
+Kareena_kapoor.write.format('jdbc').options(url='jdbc:postgresql://127.0.0.1/Netflix_titles', driver='org.postgresql.Driver',
                                             dbtable='Kareena_kapoor', user='amrit', password='1234').mode('overwrite').save()

@@ -2,7 +2,7 @@
 
 from pyspark.sql import SparkSession, functions as F
 
-spark = SparkSession.builder.appName('')\
+spark = SparkSession.builder.appName('Netflix_all_in_One')\
     .getOrCreate()
 
 Netflix_Titles = spark.read.json('Data/netflix_titles.json')
@@ -21,10 +21,11 @@ PG_13.show(20)
 print('count of PG-13 rating', PG_13.count())
 
 ############ CSV ############
-PG_13.coalesce(1).write.csv('Output/PG_13', header=True, mode='overwrite')
+PG_13.coalesce(1).write.csv('Output/Netflix/PG_13',
+                            header=True, mode='overwrite')
 
 # ############ Postgres ############
-PG_13.write.format('jdbc').options(url='jdbc:postgresql://127.0.0.1/postgres', driver='org.postgresql.Driver',
+PG_13.write.format('jdbc').options(url='jdbc:postgresql://127.0.0.1/Netflix_titles', driver='org.postgresql.Driver',
                                    dbtable='PG_13', user='amrit', password='1234').mode('overwrite').save()
 # mode(overwrite) drop old table from database and creates a new table 'directors_count_no_empty'
 # save() is action and it will execute the query
@@ -56,10 +57,10 @@ cast_count_no_empty.show(20)  # empty values  not counted
 
 ############ CSV ############
 cast_count_no_empty.coalesce(1).write.csv(
-    'Output/Cast_count', header=True, mode='overwrite')
+    'Output/Netflix/Cast_count', header=True, mode='overwrite')
 
 # # ############ Postgres ############
-cast_count_no_empty.write.format('jdbc').options(url='jdbc:postgresql://127.0.0.1/postgres',
+cast_count_no_empty.write.format('jdbc').options(url='jdbc:postgresql://127.0.0.1/Netflix_titles',
                                                  driver='org.postgresql.Driver',  dbtable='Cast_count', user='amrit', password='1234').mode('overwrite').save()
 
 
@@ -90,10 +91,10 @@ directors_count_no_empty.count()
 
 ############ CSV ############
 directors_count_no_empty.coalesce(1).write.csv(
-    'Output/Directors_count', header=True, mode='overwrite')
+    'Output/Netflix/Directors_count', header=True, mode='overwrite')
 
 # # ############ Postgres ############
-directors_count_no_empty.write.format('jdbc').options(url='jdbc:postgresql://127.0.0.1/postgres',
+directors_count_no_empty.write.format('jdbc').options(url='jdbc:postgresql://127.0.0.1/Netflix_titles',
                                                       driver='org.postgresql.Driver',  dbtable='Directors_count', user='amrit', password='1234').mode('overwrite').save()
 
 
@@ -124,10 +125,10 @@ country_genre_combined.show(20)
 
 ############ CSV ############
 country_genre_combined.coalesce(1).write.csv(
-    'Output/Country_genre_combined', header=True, mode='overwrite')
+    'Output/Netflix/Country_genre_combined', header=True, mode='overwrite')
 
 # # ############ Postgres ############
-country_genre_combined.write.format('jdbc').options(url='jdbc:postgresql://127.0.0.1/postgres', driver='org.postgresql.Driver',
+country_genre_combined.write.format('jdbc').options(url='jdbc:postgresql://127.0.0.1/Netflix_titles', driver='org.postgresql.Driver',
                                                     dbtable='Country_genre_combined', user='amrit', password='1234').mode('overwrite').save()
 
 
@@ -143,10 +144,10 @@ print('count:  Movies released in 2008:  ', movies_2008.count())
 
 ############ CSV ############
 movies_2008.coalesce(1).write.csv(
-    'Output/Movies_2008', header=True, mode='overwrite')
+    'Output/Netflix/Movies_2008', header=True, mode='overwrite')
 
 # # ############ Postgres ############
-movies_2008.write.format('jdbc').options(url='jdbc:postgresql://127.0.0.1/postgres', driver='org.postgresql.Driver',
+movies_2008.write.format('jdbc').options(url='jdbc:postgresql://127.0.0.1/Netflix_titles', driver='org.postgresql.Driver',
                                          dbtable='Movies_2008', user='amrit', password='1234').mode('overwrite').save()
 
 
@@ -175,10 +176,10 @@ print('count: movies with duration more than 100 :', movies_100.count())
 
 ############ CSV ############
 movies_100.coalesce(1).write.csv(
-    'Output/Movies_100', header=True, mode='overwrite')
+    'Output/Netflix/Movies_100', header=True, mode='overwrite')
 
 # # ############ Postgres ############
-movies_100.write.format('jdbc').options(url='jdbc:postgresql://127.0.0.1/postgres', driver='org.postgresql.Driver',
+movies_100.write.format('jdbc').options(url='jdbc:postgresql://127.0.0.1/Netflix_titles', driver='org.postgresql.Driver',
                                         dbtable='Movies_100', user='amrit', password='1234').mode('overwrite').save()
 
 
@@ -201,8 +202,8 @@ print(' Count :: Movies played by Kareena Kapoor are: ', Kareena_kapoor.count())
 
 ####### CSV file  ############
 Kareena_kapoor.coalesce(1).write.csv(
-    'Output/Kareena_kapoor', header=True, mode='overwrite')
+    'Output/Netflix/Kareena_kapoor', header=True, mode='overwrite')
 
 ############ Postgres ############
-Kareena_kapoor.write.format('jdbc').options(url='jdbc:postgresql://127.0.0.1/postgres', driver='org.postgresql.Driver',
+Kareena_kapoor.write.format('jdbc').options(url='jdbc:postgresql://127.0.0.1/Netflix_titles', driver='org.postgresql.Driver',
                                             dbtable='Kareena_kapoor', user='amrit', password='1234').mode('overwrite').save()

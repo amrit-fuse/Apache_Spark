@@ -36,8 +36,8 @@ print('count: movies with duration more than 100 :', movies_100.count())
 
 ############ CSV ############
 movies_100.coalesce(1).write.csv(
-    'Output/Movies_100', header=True, mode='overwrite')
+    'Output/Netflix/Movies_100', header=True, mode='overwrite')
 
 # # ############ Postgres ############
-movies_100.write.format('jdbc').options(url='jdbc:postgresql://127.0.0.1/postgres', driver='org.postgresql.Driver',
+movies_100.write.format('jdbc').options(url='jdbc:postgresql://127.0.0.1/Netflix_titles', driver='org.postgresql.Driver',
                                         dbtable='Movies_100', user='amrit', password='1234').mode('overwrite').save()

@@ -35,8 +35,8 @@ cast_count_no_empty.show(20)  # empty values  not counted
 
 ############ CSV ############
 cast_count_no_empty.coalesce(1).write.csv(
-    'Output/Cast_count', header=True, mode='overwrite')
+    'Output/Netflix/Cast_count', header=True, mode='overwrite')
 
 # # ############ Postgres ############
-cast_count_no_empty.write.format('jdbc').options(url='jdbc:postgresql://127.0.0.1/postgres',
+cast_count_no_empty.write.format('jdbc').options(url='jdbc:postgresql://127.0.0.1/Netflix_titles',
                                                  driver='org.postgresql.Driver',  dbtable='Cast_count', user='amrit', password='1234').mode('overwrite').save()

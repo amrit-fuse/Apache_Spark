@@ -37,8 +37,8 @@ directors_count_no_empty.count()
 
 ############ CSV ############
 directors_count_no_empty.coalesce(1).write.csv(
-    'Output/Directors_count', header=True, mode='overwrite')
+    'Output/Netflix/Directors_count', header=True, mode='overwrite')
 
 # # ############ Postgres ############
-directors_count_no_empty.write.format('jdbc').options(url='jdbc:postgresql://127.0.0.1/postgres',
+directors_count_no_empty.write.format('jdbc').options(url='jdbc:postgresql://127.0.0.1/Netflix_titles',
                                                       driver='org.postgresql.Driver',  dbtable='Directors_count', user='amrit', password='1234').mode('overwrite').save()
